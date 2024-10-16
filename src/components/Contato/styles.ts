@@ -1,8 +1,9 @@
 import styled from 'styled-components'
+import { Botao } from '../../styles'
 
 export const Container = styled.div`
   border: 1px solid #000;
-  margin: 8px 0;
+  margin: 8px;
 `
 
 export const ContatoItem = styled.div`
@@ -25,23 +26,7 @@ export const Botoes = styled.div`
   margin-right: 16px;
 `
 
-export const Botao = styled.button`
-  padding: 5px;
-  border: none;
-  border-radius: 8px;
-  margin-bottom: 16px;
-  cursor: pointer;
-
-  &&:hover {
-    background-color: #f2eae4;
-  }
-`
-
-export const BotaoEditar = styled(Botao)`
-  background-color: #736f36;
-  margin-right: 8px;
-`
-
 export const BotaoRemover = styled(Botao)`
   background-color: #a6866a;
+  width: 100px;
 `

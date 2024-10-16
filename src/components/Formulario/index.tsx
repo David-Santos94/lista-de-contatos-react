@@ -1,53 +1,90 @@
 import { FormEvent, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addContato } from '../../store/reducer/contactsSlice'
+import { addContato, editContato } from '../../store/reducer/contactsSlice'
 import { RootReducer } from '../../store'
+import { Cadastro, Campo, Titulo } from './styles'
+import { BotaoEditarCadastrar } from '../../styles'
+import {
+  editar,
+  exibirState as Props
+} from '../../store/reducer/exibeFormularioSlice'
 
-const Formulario = () => {
-  const { list } = useSelector((state: RootReducer) => state.contatos)
+const Formulario = ({ id, name, email, phone }: Props) => {
   const dispatch = useDispatch()
-  const [nome, setNome] = useState('')
-  const [email, setEmail] = useState('')
-  const [telefone, setTelefone] = useState('')
+  const { list } = useSelector((state: RootReducer) => state.contatos)
+  const [nomeInput, setNomeInput] = useState(name)
+  const [emailInput, setEmailInput] = useState(email)
+  const [telefone, setTelefone] = useState(phone)
 
   const cadastrarOuEditar = (evento: FormEvent) => {
     evento.preventDefault()
-
     const ultimoContato = list[list.length - 1]
     const novoID = ultimoContato ? ultimoContato.id + 1 : 1
 
-    dispatch(
-      addContato({
-        id: novoID,
-        name: nome,
-        email,
-        phone: telefone
-      })
-    )
+    {
+      id
+        ? (dispatch(
+            editContato({
+              id,
+              name: nomeInput,
+              email: emailInput,
+              phone: telefone
+            })
+          ),
+          dispatch(
+            editar({
+              status: false,
+              id: 0,
+              name: '',
+              email: '',
+              phone: ''
+            })
+          ))
+        : dispatch(
+            addContato({
+              id: novoID,
+              name: nomeInput,
+              email: emailInput,
+              phone: telefone
+            }),
+            dispatch(
+              editar({
+                status: false,
+                id: 0,
+                name: '',
+                email: '',
+                phone: ''
+              })
+            )
+          )
+    }
   }
 
   return (
-    <form onSubmit={cadastrarOuEditar}>
-      <input
+    <Cadastro onSubmit={cadastrarOuEditar}>
+      <Titulo>{id ? <>Editar Contato</> : <>Novo Contato</>}</Titulo>
+      <Campo
         type="text"
-        value={nome}
-        onChange={(evento) => setNome(evento.target.value)}
+        value={nomeInput}
+        onChange={(evento) => setNomeInput(evento.target.value)}
         placeholder="Nome"
       />
-      <input
+      <Campo
         type="email"
-        value={email}
-        onChange={(evento) => setEmail(evento.target.value)}
+        value={emailInput}
+        onChange={(evento) => setEmailInput(evento.target.value)}
         placeholder="E-mail"
       />
-      <input
+      <Campo
         type="tel"
         value={telefone}
         onChange={(evento) => setTelefone(evento.target.value)}
         placeholder="Telefone"
       />
-      <button type="submit">Cadastrar</button>
-    </form>
+      <BotaoEditarCadastrar type="submit">
+        {id ? <>Editar</> : <>Cadastrar</>}
+      </BotaoEditarCadastrar>
+    </Cadastro>
   )
 }
 

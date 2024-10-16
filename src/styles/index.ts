@@ -18,41 +18,23 @@ export const Container = styled.div`
 `
 export const TituloPrincipal = styled.h1`
   text-align: center;
-  margin: 60px 0;
+  margin: 16px 0;
 `
-
-export const Button = styled.button`
-  background-color: #4caf50;
-  color: white;
+export const Botao = styled.button`
+  padding: 12px 5px;
+  width: 100px;
   border: none;
-  padding: 10px 20px;
-  margin: 5px;
+  border-radius: 8px;
+  margin-bottom: 16px;
   cursor: pointer;
+
+  &&:hover {
+    background-color: #f2eae4;
+  }
 `
 
-export const Input = styled.input`
-  margin: 5px 0;
-  padding: 10px;
-  width: 100%;
-`
-
-export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  max-width: 300px;
-  margin: 10px auto;
-`
-
-export const List = styled.ul`
-  list-style: none;
-  padding: 0;
-`
-
-export const ListItem = styled.li`
-  display: flex;
-  justify-content: space-between;
-  margin: 10px 0;
-  padding: 10px;
-  background-color: #f0f0f0;
+export const BotaoEditarCadastrar = styled(Botao)`
+  background-color: #736f36;
+  margin-right: 8px;
 `
 export default EstiloGlobal
