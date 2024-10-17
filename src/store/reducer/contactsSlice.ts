@@ -15,27 +15,9 @@ const initialState: ContatosState = {
   list: [
     {
       id: 1,
-      name: 'david',
-      email: 'david@email',
-      phone: '1234567889'
-    },
-    {
-      id: 2,
-      name: 'mayara',
-      email: 'mayara@email',
-      phone: '1234567889'
-    },
-    {
-      id: 3,
-      name: 'barry',
-      email: 'barry@email',
-      phone: '1234567889'
-    },
-    {
-      id: 4,
-      name: 'cookie',
-      email: 'cookie@email',
-      phone: '1234567889'
+      name: 'David Santos',
+      email: 'david@gmail.com',
+      phone: '914036528'
     }
   ]
 }
